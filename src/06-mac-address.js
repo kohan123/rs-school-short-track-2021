@@ -12,8 +12,24 @@
  * For 00-1B-63-84-45-E6, the output should be true.
  *
  */
-function isMAC48Address(/* n */) {
-  throw new Error('Not implemented');
+function isMAC48Address(n) {
+  const codeForAlLetter = 'A'.charCodeAt(0);
+  const codeForFlLetter = 'F'.charCodeAt(0);
+  const groups = n.split('-');
+  if (groups.length !== 6) {
+    return false;
+  }
+
+  return groups.every((group) => {
+    if (group.length !== 2) {
+      return false;
+    }
+    return group.split('').every((char) => {
+      const isNumber = !Number.isNaN(Number(char));
+      const code = char.charCodeAt(0);
+      return isNumber || (code >= codeForAlLetter && code <= codeForFlLetter);
+    });
+  });
 }
 
 module.exports = isMAC48Address;
