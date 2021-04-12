@@ -17,6 +17,7 @@ class Queue {
     this.tail = null;
     this.count = 0;
   }
+
   get size() {
     return this.count;
   }
@@ -26,7 +27,7 @@ class Queue {
       this.list = new ListNode(element);
       this.tail = this.list;
     } else {
-      this.tail.next = new ListNode(element)
+      this.tail.next = new ListNode(element);
       this.tail = this.list.next;
     }
   }
